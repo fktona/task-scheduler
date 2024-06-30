@@ -1,6 +1,6 @@
 steps:
   # Step 1: Install dependencies
-  - name: 'node:14'
+  - name: 'node:20'
     dir: 'task_scheduler_backend/Auth_Service'
     entrypoint: 'npm'
     args: ['install']
@@ -12,7 +12,7 @@ steps:
       - 'deploy'
       - 'Auth_Service'
       - '--runtime'
-      - 'nodejs14'
+      - 'nodejs20'
       - '--trigger-http'
       - '--allow-unauthenticated'
       - '--entry-point'
