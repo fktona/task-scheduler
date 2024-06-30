@@ -7,7 +7,7 @@ export const senderMsg = ({name , message , userMail , userName}: {name: string,
             signature: 'Thanks for using SendSpear services',
 
         }
-    };
+    }; 
 };
 
 export const receiversMsg = (name: string, email: string, message: string, userName: string) => {
