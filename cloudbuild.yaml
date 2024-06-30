@@ -23,7 +23,8 @@ steps:
       - 'task_scheduler_backend/Auth_Service'
 
 options:
-  logging: 'NONE'  # Set logging to NONE to disable logging
+  logging:
+    - 'CLOUD_LOGGING_ONLY'  # Set logging to Cloud Logging only
 
 substitutions:
   _FUNCTION_NAME: 'Auth_Service'
