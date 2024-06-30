@@ -1,9 +1,11 @@
 steps:
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
+      - 'functions'
       - 'deploy'
-      - 'task-scheduler'
-      - '--source=.'
+      - 'function-1'
+      - '--trigger-http'
+      - '--runtime=nodejs20'
+      # Optionally add other flags like --region, --entry-point, etc.
 
-options:
-  machineType: 'N1_HIGHCPU_8'
+
