@@ -1,6 +1,6 @@
 steps:
   # Step 1: Install dependencies
-  - name: 'node:20'
+  - name: 'node:14'
     dir: 'task_scheduler_backend/Auth_Service'
     entrypoint: 'npm'
     args: ['install']
@@ -21,6 +21,9 @@ steps:
       - 'us-central1'
       - '--source'
       - 'task_scheduler_backend/Auth_Service'
+
+options:
+  logging: 'NONE'  # Set logging to NONE to disable logging
 
 substitutions:
   _FUNCTION_NAME: 'Auth_Service'
