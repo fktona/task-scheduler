@@ -26,6 +26,6 @@ db.mongoose
   });
 
 
-  export default app; 
+  exports.authService = app;
 
 
