@@ -1,9 +1,9 @@
 steps:
-  - name: 'gcr.io/cloud-builders/npm'
-    args: ['install']
-    dir: 'task_scheduler_backend'
-  - name: 'gcr.io/cloud-builders/npm'
-    args: ['run', 'build']
-    dir: 'task_scheduler_backend'
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['function', 'deploy', 'task-scheduler', '--triger-http', '--platform=managed']
+    args:
+      - 'deploy'
+      - 'task-scheduler'
+      - '--source=.'
+
+options:
+  machineType: 'N1_HIGHCPU_8'
