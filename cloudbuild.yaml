@@ -23,8 +23,7 @@ steps:
       - 'task_scheduler_backend/Auth_Service'
 
 options:
-  logging:
-    - 'CLOUD_LOGGING_ONLY'  # Set logging to Cloud Logging only
+  logging: 'CLOUD_LOGGING_ONLY'  # Correct indentation and syntax
 
 substitutions:
   _FUNCTION_NAME: 'Auth_Service'
