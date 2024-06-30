@@ -1,30 +1,38 @@
 steps:
   # Step 1: Install dependencies
   - name: 'node:20'
-    dir: 'task_scheduler_backend/Auth_Service'
     entrypoint: 'npm'
     args: ['install']
+    dir: 'task_scheduler_backend/Auth_Service'
 
+  # Step 2: Build TypeScript to JavaScript
   - name: 'gcr.io/cloud-builders/npm'
+    entrypoint: 'npm'
     args: ['run', 'build']
     dir: 'task_scheduler_backend/Auth_Service'
 
-  # Step 2: Deploy the function to Google Cloud Functions
+  # Step 3: Copy necessary files to dist/ (if needed)
+  - name: 'gcr.io/cloud-builders/npm'
+    entrypoint: 'npm'
+    args: ['install', '--production']
+    dir: 'task_scheduler_backend/Auth_Service'
+
+  # Step 4: Deploy the function to Google Cloud Functions
   - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'gcloud'
     args:
       - 'functions'
       - 'deploy'
-      - 'Auth_Service'
-      - '--runtime'
-      - 'nodejs20'
+      - '$_FUNCTION_NAME'
+      - '--runtime=nodejs20'
       - '--trigger-http'
       - '--allow-unauthenticated'
-      - '--entry-point'
-      - 'authService'
-      - '--region'
-      - 'us-central1'
-    dir: 'task_scheduler_backend/Auth_Service/dist' 
+      - '--entry-point=$_ENTRY_POINT'
+      - '--region=$_REGION'
+      - '--log-level=$_LOGGING'  # Ensure correct logging level
+    dir: 'task_scheduler_backend/Auth_Service/dist'
 
+# Substitutions and options
 options:
   logging: 'CLOUD_LOGGING_ONLY'  # Set logging to Cloud Logging only
 
@@ -32,3 +40,4 @@ substitutions:
   _FUNCTION_NAME: 'Auth_Service'
   _ENTRY_POINT: 'authService'
   _REGION: 'us-central1'
+  _LOGGING: 'CLOUD_LOGGING_ONLY'
