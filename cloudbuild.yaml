@@ -1,6 +1,9 @@
 steps:
-  - name: 'gcr.io/cloud-builders/gcloud'
+  - name: 'gcr.io/cloud-builders/npm'
     args: ['install']
-    dir: 'tas'
+    dir: 'task_scheduler_backend'
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['run', 'build']
+    dir: 'task_scheduler_backend'
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['run]', 'deploy', 'my-app', '--image=gcr.io/task-428001/my-app', '--platform=managed']
+    args: ['function', 'deploy', 'task-scheduler', '--triger-http', '--platform=managed']
