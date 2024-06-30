@@ -19,11 +19,10 @@ steps:
       - 'default'
       - '--region'
       - 'us-central1'
-      - '--source'
-      - 'task_scheduler_backend/Auth_Service'
+    dir: 'task_scheduler_backend/Auth_Service'  # Specify the directory containing source code
 
 options:
-  logging: 'CLOUD_LOGGING_ONLY'  # Correct indentation and syntax
+  logging: 'CLOUD_LOGGING_ONLY'  # Set logging to Cloud Logging only
 
 substitutions:
   _FUNCTION_NAME: 'Auth_Service'
