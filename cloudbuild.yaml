@@ -5,6 +5,10 @@ steps:
     entrypoint: 'npm'
     args: ['install']
 
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['run', 'build']
+    dir: 'task_scheduler_backend/Auth_Service'
+
   # Step 2: Deploy the function to Google Cloud Functions
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
@@ -19,7 +23,7 @@ steps:
       - 'default'
       - '--region'
       - 'us-central1'
-    dir: 'task_scheduler_backend/Auth_Service'  # Specify the directory containing source code
+    dir: 'task_scheduler_backend/Auth_Service/dist' 
 
 options:
   logging: 'CLOUD_LOGGING_ONLY'  # Set logging to Cloud Logging only
