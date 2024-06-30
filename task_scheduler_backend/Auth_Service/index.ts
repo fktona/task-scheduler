@@ -26,4 +26,6 @@ db.mongoose
   });
 
 
+  export default app; 
+
 

@@ -1,11 +1,28 @@
 steps:
+  # Step 1: Install dependencies
+  - name: 'node:20'
+    dir: 'task_scheduler_backend/Auth_Service'
+    entrypoint: 'npm'
+    args: ['install']
+
+  # Step 2: Deploy the function to Google Cloud Functions
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
       - 'functions'
       - 'deploy'
-      - 'function-1'
+      - 'Auth_Service'
+      - '--runtime'
+      - 'nodejs14'
       - '--trigger-http'
-      - '--runtime=nodejs20'
-      # Optionally add other flags like --region, --entry-point, etc.
+      - '--allow-unauthenticated'
+      - '--entry-point'
+      - 'default'
+      - '--region'
+      - 'us-central1'
+      - '--source'
+      - 'task_scheduler_backend/Auth_Service'
 
-
+substitutions:
+  _FUNCTION_NAME: 'Auth_Service'
+  _ENTRY_POINT: 'default'
+  _REGION: 'us-central1'
