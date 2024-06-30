@@ -1,19 +1,14 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const AUTH_1 = __importDefault(require("./routes/AUTH"));
-const cors_1 = __importDefault(require("cors"));
-const models_1 = __importDefault(require("./models"));
-const app = (0, express_1.default)();
-app.use(express_1.default.json());
-app.use((0, cors_1.default)());
-app.use(express_1.default.urlencoded({ extended: true }));
+import express from 'express';
+import auth from './routes/AUTH';
+import cors from 'cors';
+import db from './models';
+const app = express();
+app.use(express.json());
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
 const PORT = process.env.PORT || 1000;
-app.use('/api/auth', AUTH_1.default);
-models_1.default.mongoose
+app.use('/api/auth', auth);
+db.mongoose
     .connect('mongodb+srv://adetonafk:FaithTask@taskscheduler.wryp8pz.mongodb.net/?retryWrites=true&w=majority&appName=TaskScheduler')
     .then(() => {
     console.log("Successfully connect to MongoDB.");

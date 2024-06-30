@@ -30,5 +30,5 @@ options:
 
 substitutions:
   _FUNCTION_NAME: 'Auth_Service'
-  _ENTRY_POINT: 'default'
+  _ENTRY_POINT: 'authService'
   _REGION: 'us-central1'
