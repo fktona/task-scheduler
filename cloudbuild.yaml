@@ -15,7 +15,7 @@ steps:
   - name: 'gcr.io/cloud-builders/npm'
     entrypoint: 'npm'
     args: ['install', '--production']
-    dir: 'task_scheduler_backend/Auth_Service'
+    dir: 'task_scheduler_backend/Auth_Service/dist'
 
   # Step 4: Deploy the function to Google Cloud Functions
   - name: 'gcr.io/cloud-builders/gcloud'
